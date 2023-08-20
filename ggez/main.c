@@ -1,7 +1,8 @@
 #include <unistd.h>
-#include <stdio.h>
 
-#define N 6
+#define N 4
+
+int	rush01(char m[][N],char c[][N]);
 
 int	check_string(char str[])
 {
@@ -44,58 +45,45 @@ void padding(char m[][N])
 	}
 }
 
-void initializer(char m[][N], char *str)
+void initializer(char c[][N], char *str)
 {
-	int i;
+	int	i;
+	int	j;
 	int k;
 
-	i = 1;
+	i = 0;
+	j = 0;
 	k = 0;
-	while (i < N -1){
-		m[0][i++] = str[k];
-		k = k + 2;
-	}
-	i = 1;
-	while (i < N -1){
-		m[N - 1][i++] = str[k];
-		k = k + 2;
-	}
-	i = 1;
-	while (i < N -1){
-		m[i++][0] = str[k];
-		k = k + 2;
-	}
-		i = 1;
-	while (i < N -1){
-		m[i++][N - 1] = str[k];
-		k = k + 2;
+	while (i < N )
+	{
+		while (j < N )
+		{
+			c[i][j] = str[k];
+			j++;
+			k = k + 2;
+		}
+		j = 0;
+		i++;
 	}
 }
 
 int	main(int argc, char **argv)
 {
-	char m[N][N]; // Vi mas intuitivo poner las condiciones en la misma matriz que en una nueva. Cuestion de gustos
+	char m[N][N];
+	char c[N][N];
+	int	res;
 
 	if (argc!=2)
-	{
 		write(1,"Error\n",6);
-	}
 	else if (check_string(argv[1]) == -1)
-	{
 		write(1,"Error\n",6);
-	}
 	else
 	{
 		padding(m);
-		initializer(m, argv[1]);
-		//rush <- llamar aqui y hacer en un .c distinto
-		for (int i = 0; i < N; i++){ // <- Quitar esto, solo sirve para comprobar
-			for (int j = 0; j < N; j++){
-				printf("%c ", m[i][j]);
-			}
-			printf("\n");
-		}
-
+		initializer(c, argv[1]);
+		res = rush01(m,c);
+		if (res == -1)
+			write(1,"Error\n",6);
 	}
 
 	return (0);
