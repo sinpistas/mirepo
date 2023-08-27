@@ -18,13 +18,18 @@
 int	main(int argc, char **argv)
 {
 	unsigned int	number;
-	t_dictionary	**dic;
+	t_dictionary	*dic;
 	int				res;
+	int				keys;
+
 	if (number_check_atoi(argc, argv, &number) != 1)
 		return (errors(-1));
 	dic = NULL;
-	res = mount_dictionary(dic);
+	res = mount_dictionary(&dic, &keys);
 	if (res < 0)
 		return (errors(res));
-
+	for(int i = 0; i < keys; i++)
+	{
+		printf("%s - %s\n",dic[i].key,dic[i].word);
+	}
 }
