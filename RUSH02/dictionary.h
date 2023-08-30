@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checks.h                                           :+:      :+:    :+:   */
+/*   dictionary.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apestana <apestana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 17:31:21 by apestana          #+#    #+#             */
-/*   Updated: 2023/08/27 18:43:10 by apestana         ###   ########.fr       */
+/*   Created: 2023/08/26 22:01:42 by apestana          #+#    #+#             */
+/*   Updated: 2023/08/27 18:42:15 by apestana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKS_H
-# define CHECKS_H
+#ifndef DICTIONARY_H
+# define DICTIONARY_H
+# include "dictionaryaux.h"
 # include <unistd.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <stdio.h>
 
-unsigned int	ft_check(char c, int **sign);
+typedef struct s_struct
+{
+	char	*key;
+	char	*word;
+}	t_dictionary;
 
-int				ft_atoi(char *str, unsigned long long int *res, int *sig);
+char			*ft_read_key(int fd, int *res);
 
-int				number_check_atoi(int argc, char **argv, unsigned int *number);
+char			*ft_read_word(int fd, int *res);
 
-int				errors(int number);
+t_dictionary	mount_structure(int fd, int *res);
+
+int				mount_dictionary(t_dictionary **s_dictionary, int *keys);
 
 #endif

@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dicctionary.h                                      :+:      :+:    :+:   */
+/*   translator.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apestana <apestana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 22:01:42 by apestana          #+#    #+#             */
-/*   Updated: 2023/08/26 22:07:07 by apestana         ###   ########.fr       */
+/*   Created: 2023/08/27 18:34:39 by apestana          #+#    #+#             */
+/*   Updated: 2023/08/27 22:11:59 by apestana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DICCTIONARY_H
-# define DICCTIONARY_H
+#ifndef TRANSLATOR_H
+# define TRANSLATOR_H
+# define C 100
+# include "dictionary.h"
+# include <unistd.h>
 
-typedef struct
-{
-	int	a;
-} t_dicctionary;
+void	finder(t_dictionary *dic, int keys, int num, int pos);
+
+int		rosetta(t_dictionary *dic, int keys, char *num, int size);
+
+int		translator(t_dictionary *dic, int keys, unsigned int number);
 
 #endif

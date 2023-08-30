@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checks.h                                           :+:      :+:    :+:   */
+/*   rosettatools.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apestana <apestana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/26 17:31:21 by apestana          #+#    #+#             */
-/*   Updated: 2023/08/27 18:43:10 by apestana         ###   ########.fr       */
+/*   Created: 2023/08/27 21:54:42 by apestana          #+#    #+#             */
+/*   Updated: 2023/08/27 21:56:43 by apestana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKS_H
-# define CHECKS_H
+#ifndef ROSETTATOOLS_H
+# define ROSETTATOOLS_H
 # include <unistd.h>
 
-unsigned int	ft_check(char c, int **sign);
+void	ft_rev_int_tab(char *tab, int size);
 
-int				ft_atoi(char *str, unsigned long long int *res, int *sig);
+int		ft_itost(unsigned int number, char *str_number);
 
-int				number_check_atoi(int argc, char **argv, unsigned int *number);
-
-int				errors(int number);
+void	ft_putstr(char *str);
 
 #endif

@@ -6,34 +6,39 @@
 /*   By: apestana <apestana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 17:21:54 by apestana          #+#    #+#             */
-/*   Updated: 2023/08/26 22:03:45 by apestana         ###   ########.fr       */
+/*   Updated: 2023/08/27 22:25:29 by apestana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <fcntl.h>
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
 #include "checks.h"
-#include "dicctionary.h"
+#include "dictionary.h"
+#include "translator.h"
 
 int	main(int argc, char **argv)
 {
 	unsigned int	number;
-	char			b;
-	int				fd;
-	int				leidos;
+	t_dictionary	*dic;
+	int				res;
+	int				keys;
+	int				i;
 
+	i = -1;
 	if (number_check_atoi(argc, argv, &number) != 1)
-		write (1, "Error\n", 6);
-	fd = open("numbers.dict", O_RDONLY);
-	if(fd < 0)
-		return(-1);
-	leidos = read(fd, &b, 1);
-	while (leidos != 0)
+		return (errors(-1));
+	dic = NULL;
+	res = mount_dictionary(&dic, &keys);
+	if (res < 0)
+		return (errors(res));
+	if (argc == 2)
+		if (translator(dic, keys, number) == -1)
+			return (errors(-1));
+	while (++i < keys)
 	{
-		write(1, &b, 1);
-		leidos =read(fd, &b, 1);
+		free(dic[i].key);
+		free(dic[i].word);
 	}
-	close(fd);
+	free(dic);
+	return (0);
 }
